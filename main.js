@@ -1,3 +1,5 @@
+// Chart source: https://www.amcharts.com/kbase/color-coding-map-areas/
+
 const stateMap =  {
     "US-AL": /(( A[Ll]$)|([Aa]labama))/,
     "US-AK": /(( A[Kk]$)|([Aa]laska))/,
@@ -92,6 +94,15 @@ function getAreas() {
 
     }
 
+    /*
+        convert rgb to hex
+        src: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+    */
+    function rgb2hex(red, green, blue) {
+        var rgb = blue | (green << 8) | (red << 16);
+        return '#' + (0x1000000 + rgb).toString(16).slice(1)
+    }
+
     // fileReader.onload = function (e) {
     //     console.log(fileReader.result);
     // }
@@ -101,10 +112,15 @@ function getAreas() {
     var areas = [];
 
     Object.keys(stateMap).map( (state) => {
-        var color = stateSongCount[state] / 640;
-        color *= 16776960;
-        console.log(state+"\t"+"#"+Math.floor(color).toString(16));
-        var format = {"id": state, "color": "#"+Math.floor(color).toString(16)};
+        var color = stateSongCount[state] / 640 * 100;
+    var r = Math.floor((255 * color) / 100),
+        g = Math.floor((255 * (100 - color)) / 100),
+        b = 0;
+        var format = {
+            "id": state,
+            "color": rgb2hex(r, g, b),
+            "balloonText": state.substr(3) + "\n" + stateSongCount[state] + " Songs"
+        };
         areas.push(format);
     });
     return areas;
@@ -272,7 +288,7 @@ initialized = true;
 
  map = AmCharts.makeChart("chartdiv", {
     type: "map",
-    "theme": "light",
+    "theme": "dark",
     pathToImages: "https://www.amcharts.com/lib/3/images/",
 
     colorSteps: 10,
@@ -283,7 +299,7 @@ initialized = true;
     },
 
     areasSettings: {
-        autoZoom: true
+        autoZoom: false
     },
 
     legend: {
@@ -296,22 +312,23 @@ initialized = true;
         borderColor: "#ffffff",
         borderAlpha: 1,
         top: 50,
-        right: 0,
+        right: 50,
         maxColumns: 1,
         equalWidths: true,
         horizontalGap: 10,
         data: [{
-            title: "Criteria #1",
-            color: "#F0B67F"
+            title: "More known artists",
+            color: "#FF0000"
         }, {
-            title: "Criteria #2",
-            color: "#D6D1B1"
-        }, {
-            title: "Criteria #3",
-            color: "#C7EFCF"
+            title: "Fewer known artists",
+            color: "#00FF00"
         }]
-    }
+    },
+
+     "zoomControl": {
+         "zoomControlEnabled": false
+     }
 
 });
 
-}, 3000);
+}, 1000);
