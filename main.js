@@ -353,11 +353,11 @@ setTimeout(() => {
             equalWidths: true,
             horizontalGap: 10,
             data: [{
-                title: "More known artists",
-                color: "#FF0000"
-            }, {
-                title: "Fewer known artists",
+                title: "Highest",
                 color: "#00FF00"
+            }, {
+                title: "Lowest",
+                color: "#000000"
             }]
         },
 
@@ -373,6 +373,12 @@ setTimeout(() => {
         height: '40px',
         right: '2vw',
         top: '2vh',
+        'z-index': '-1',
     });
+
+    $('body').css({width: '99vw'});
+    setTimeout( () => {
+        $('body').css({width: '100vw', overflow: 'hidden'});
+    }, 100);
 
 }, 2000);
