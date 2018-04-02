@@ -6,7 +6,8 @@
 </head>
 
 <body>
-
+<a href="./index.html">Back to Maps</a>
+<h3>Higher BPM = Higher Average Songs per Artist</h3>
 </body>
 <script>
     const data1 = {
@@ -71,25 +72,39 @@
             setInterval( () => {
                 if($('#'+state).attr("color") && $('#'+state).attr("color") != "white") {
                     // if(state === "CA") console.log("coloring white");
-                    $('#'+state).css("background-color", 'white');
+                    $('#'+state).css({"background-color": 'whitesmoke', color: 'black'});
                     $('#'+state).attr("color", "white");
                 } else {
                     // if(state === "CA") console.log("coloring blue");
-                    $('#'+state).css("background-color", 'blue');
+                    $('#'+state).css({"background-color": 'blue', color: 'white'});
                     $('#'+state).attr("color", 'blue');
                 }
-            }, 3000 / data1[state]);
+            }, 1000 / data1[state]);
         });
     });
 
 </script>
 
 <style>
+
+    a {
+        color: aliceblue;
+    }
+
+    body {
+        background-color: black;
+    }
+
     .box {
+        font-family: "Sans Serif";
         display: inline-block;
         width: 6vw;
         height: 19vh;
         margin: 1vw;
-        padding: 10px;
+        padding: 1vw;
+        padding-top: 10vh;
+        text-align: center;
+        border-radius: 100px;
+
     }
 </style>
