@@ -1,0 +1,95 @@
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    const data1 = {
+        "AL": 2.076923076923077,
+        "AK": 3,
+        "AZ": 2.5555555555555554,
+        "AR": 3.4210526315789473,
+        "CA": 2.711864406779661,
+        "CO": 1.8333333333333333,
+        "CT": 2.4166666666666665,
+        "DE": 1,
+        "FL": 2.6,
+        "GA": 3.324324324324324,
+        "HI": 2.25,
+        "ID": 2,
+        "IL": 2.5238095238095237,
+        "IN": 2.2,
+        "IA": 2.4,
+        "KS": 2.4,
+        "KY": 3,
+        "LA": 2.5555555555555554,
+        "ME": 2,
+        "MD": 3.25,
+        "MA": 2.8461538461538463,
+        "MI": 2.9444444444444446,
+        "MN": 2.4444444444444446,
+        "MS": 3.6222222222222222,
+        "MO": 2.6,
+        "MT": 1,
+        "NE": 3.25,
+        "NV": 1.6,
+        "NH": 2.25,
+        "NJ": 3.59375,
+        "NM": 2.3333333333333335,
+        "NY": 2.848648648648649,
+        "NC": 2.909090909090909,
+        "ND": 3.6666666666666665,
+        "OH": 2.129032258064516,
+        "OK": 2.3333333333333335,
+        "OR": 2,
+        "PA": 2.409090909090909,
+        "RI": 1.6666666666666667,
+        "SC": 1.75,
+        "SD": 2.5,
+        "TN": 2.625,
+        "TX": 2.803921568627451,
+        "UT": 2.5,
+        "VT": 2,
+        "VA": 2.263157894736842,
+        "WA": 3.9166666666666665,
+        "WV": 4,
+        "WI": 3.1,
+        "WY": 5,
+    };
+
+
+    $(document).ready( () => {
+        console.log("Hello" + Object.keys(data1).length);
+        Object.keys(data1).forEach( (state)=> {
+            let box = '<div id="' + state +'" class="box">' + state + '</div>'
+            $('body').html($('body').html() + box);
+            setInterval( () => {
+                if($('#'+state).attr("color") && $('#'+state).attr("color") != "white") {
+                    // if(state === "CA") console.log("coloring white");
+                    $('#'+state).css("background-color", 'white');
+                    $('#'+state).attr("color", "white");
+                } else {
+                    // if(state === "CA") console.log("coloring blue");
+                    $('#'+state).css("background-color", 'blue');
+                    $('#'+state).attr("color", 'blue');
+                }
+            }, 3000 / data1[state]);
+        });
+    });
+
+</script>
+
+<style>
+    .box {
+        display: inline-block;
+        width: 6vw;
+        height: 19vh;
+        margin: 1vw;
+        padding: 10px;
+    }
+</style>

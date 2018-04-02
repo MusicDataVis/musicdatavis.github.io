@@ -144,6 +144,7 @@ function getAreas() {
             case "songsperartist":
                 color = (stateSongCount[state] / Object.keys(stateArtistUIDs[state] || {}).length) / 3 * 100;
                 label = state.substr(3) + "\n" + (stateSongCount[state] / Object.keys(stateArtistUIDs[state] || {}).length) + " Songs Per Artist";
+                console.log(state.substr(3) + "\t" + (stateSongCount[state] / Object.keys(stateArtistUIDs[state] || {}).length));
                 break;
             default:
                 color = 0;
